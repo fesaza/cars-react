@@ -4,8 +4,8 @@ import { NavigationDrawer } from 'react-md';
 import PropTypes from 'prop-types';
 import NavItemLink from './NavItemLink';
 import { navItems } from '../../utils/MenuItems';
-import Home from '../home/HomePage';
-import Members from '../members/MembersPage';
+import CarList from '../cars/CarList';
+import CompareComponent from '../compare/Compare';
 
 const styles = {
   content: { minHeight: 'auto' },
@@ -23,8 +23,8 @@ const AppPage = ({ toolbarTitle, location }) => (
     contentClassName="md-grid"
   >
     <Switch key={location.pathname}>
-      <Route path={navItems[0].to} exact component={Members} />
-      <Route path={navItems[1].to} component={Home} />
+      <Route path={navItems[0].to} exact component={CarList} />
+      <Route path={navItems[1].to} component={CompareComponent} />
     </Switch>
   </NavigationDrawer>
 );
