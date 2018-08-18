@@ -22,7 +22,9 @@ class CarList extends Component {
   }
 
   render() {
-    const { items, isLoading, onFilter } = this.props;
+    const {
+      items, isLoading, onFilter, load,
+    } = this.props;
     return (
       <Card style={{ opacity: isLoading ? 0.5 : 1 }}>
         <CardText>
@@ -40,6 +42,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
+  isLoading: state.cars.isLoading,
   items: [...state.cars.cars],
 });
 
