@@ -1,6 +1,8 @@
-// import { combineReducers } from 'redux';
-// import members from './MembersReducers';
+import { combineReducers } from 'redux';
+import cars from './CarsReducers';
 
-// ​export default combineReducers({
-//   members
-// });
+const rootReducer = combineReducers({
+  cars,
+});
+
+export default rootReducer;

@@ -2,12 +2,11 @@
 import WebFontLoader from 'webfontloader';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 import Root from './Root';
-// import rootReducer from './reducers'
-import members from './reducers/MembersReducers';
-import registerServiceWorker from './registerServiceWorker';
+import configureStore from './utils/configureStore';
+import rootSaga from './sagas';
 
 WebFontLoader.load({
   google: {
@@ -15,7 +14,8 @@ WebFontLoader.load({
   },
 });
 
-const store = createStore(members);
+const store = configureStore();
+store.runSaga(rootSaga);
 
 ReactDOM.render(<Root store={store} />, document.getElementById('root'));
 registerServiceWorker();
