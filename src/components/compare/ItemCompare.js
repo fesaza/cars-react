@@ -26,7 +26,6 @@ const ItemCompare = ({ car, removeCar }) => {
         <List ordered>
           <ListItem primaryText={`Año: ${car.year}`} />
           <ListItem primaryText={`Precio: $${car.price}`} />
-          {/* <ListItem primaryText="Thursday" /> */}
         </List>
       </CardText>
     </Card>

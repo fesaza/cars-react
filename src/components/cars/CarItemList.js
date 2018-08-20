@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Card, CardText, Grid, Cell, CardActions, Button, Snackbar } from 'react-md';
 
-const CarItemList = ({ car, addToCompare, showAddMsg, toasts, onDimissMsg }) => (
+const CarItemList = ({
+  car, addToCompare, showAddMsg, toasts, onDimissMsg,
+}) => (
   <Card className="md-block-centered card" style={{ margin: '4px 4px 12px 4px' }}>
-    {/* <CardTitle title={car.brand} subtitle={car.model} /> */}
     <CardText>
       <Grid>
         <Cell size={2}>

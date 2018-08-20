@@ -10,7 +10,6 @@ class CarDetails extends Component {
     car: PropTypes.object.isRequired,
     getCar: PropTypes.func.isRequired,
     match: PropTypes.any.isRequired,
-    // addCar: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
