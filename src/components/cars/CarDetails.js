@@ -23,7 +23,7 @@ class CarDetails extends Component {
 
   render() {
     const { car } = this.props;
-    return (
+    return car.id ? (
       <Card>
         <Grid>
           <Cell size={4}>
@@ -74,7 +74,7 @@ class CarDetails extends Component {
           </Cell>
         </Grid>
       </Card>
-    );
+    ) : (<div>Cargando...</div>);
   }
 }
 
