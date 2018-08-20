@@ -63,7 +63,8 @@ CarItemList.propTypes = {
   car: PropTypes.object.isRequired,
   addToCompare: PropTypes.func.isRequired,
   showAddMsg: PropTypes.func.isRequired,
-  toast: PropTypes.any,
+  toasts: PropTypes.any.isRequired,
+  onDimissMsg: PropTypes.func.isRequired,
 };
 
 export default CarItemList;
