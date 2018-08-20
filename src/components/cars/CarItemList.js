@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, CardText, Grid, Cell } from 'react-md';
+import { Link } from 'react-router-dom';
+import { Card, CardText, Grid, Cell, CardActions, Button } from 'react-md';
 
-const CarItemList = ({ car }) => (
+const CarItemList = ({ car, addToCompare }) => (
   <Card className="md-block-centered card" style={{ margin: '4px 4px 12px 4px' }}>
+    {/* <CardTitle title={car.brand} subtitle={car.model} /> */}
     <CardText>
       <Grid>
         <Cell size={2}>
@@ -13,13 +15,37 @@ const CarItemList = ({ car }) => (
         </Cell>
         <Cell size={9}>
           <div>
-            <div >
+            <div style={{ marginLeft: '9px', marginTop: '10px' }} >
               <h2 className="md-card-title--title md-card-title--large md-text">{car.brand}</h2>
               <h3 className="md-card-title--title md-text--secondary">{car.model}</h3>
             </div>
-            <br />
-            <div><b>Precio:</b> ${car.price}</div>
-            <div><b>Año:</b> {car.year}</div>
+
+            <CardActions>
+              <Link href={`/details/${car.id}`} to={`/details/${car.id}`}>
+                <Button
+                  tooltipLabel="Ver detalles"
+                  label="Detalles"
+                  secondary
+                  raised
+                  style={{ marginRight: '2px' }}
+                >
+                  details
+                </Button>
+              </Link>
+              <Button
+                tooltipLabel="Seleccionar para comparar"
+                label="Seleccionar"
+                raised
+                secondary
+                style={{ marginLeft: '2px' }}
+                onClick={() => {
+                  addToCompare(car.id);
+                }}
+              >
+                compare
+              </Button>
+            </CardActions>
+
           </div>
         </Cell>
       </Grid>
@@ -29,6 +55,7 @@ const CarItemList = ({ car }) => (
 
 CarItemList.propTypes = {
   car: PropTypes.object.isRequired,
+  addToCompare: PropTypes.func.isRequired,
 };
 
 export default CarItemList;

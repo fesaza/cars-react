@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Card, CardText } from 'react-md';
-import { requestCars, filterCars } from '../../actions/CarsActions';
+import { requestCars, filterCars, addCarToCompare } from '../../actions/CarsActions';
 import ListHeader from './ListHeader';
 import CarItemList from './CarItemList';
 
@@ -12,6 +12,7 @@ class CarList extends Component {
     items: PropTypes.array.isRequired,
     isLoading: PropTypes.bool.isRequired,
     onFilter: PropTypes.func.isRequired,
+    addToCompare: PropTypes.func.isRequired,
   }
 
   componentDidMount() {
@@ -23,13 +24,13 @@ class CarList extends Component {
 
   render() {
     const {
-      items, isLoading, onFilter, load,
+      items, isLoading, onFilter, addToCompare,
     } = this.props;
     return (
       <Card style={{ opacity: isLoading ? 0.5 : 1 }}>
         <CardText>
           <ListHeader onFilter={onFilter} />
-          {items.map(car => <CarItemList key={car.model} car={car} />)}
+          {items.map(car => <CarItemList key={car.model} car={car} addToCompare={addToCompare} />)}
         </CardText>
       </Card>
     );
@@ -39,6 +40,7 @@ class CarList extends Component {
 const mapDispatchToProps = dispatch => ({
   load: () => dispatch(requestCars()),
   onFilter: filterValue => dispatch(filterCars(filterValue)),
+  addToCompare: id => dispatch(addCarToCompare(id)),
 });
 
 const mapStateToProps = state => ({

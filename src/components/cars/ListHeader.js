@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { Button, TextField, FontIcon, Grid, Cell } from 'react-md';
 
 const styleButton = { margin: '2px' };
@@ -21,18 +22,18 @@ const ListHeader = ({
         onChange={onFilter}
       />
     </Cell>
-    <Cell size={1} />
-    <Cell size={1}>
-      <Button
-        tooltipLabel="Comparar modelos seleccionados"
-        label="Comparar"
-        style={styleButton}
-        floating
-        secondary
-        mini
-      >
-        add_circle_outline
-      </Button>
+    <Cell size={2} style={{ textAlign: 'right' }}>
+      <Link href="/compare" to="/compare">
+        <Button
+          tooltipLabel="Comparar modelos seleccionados"
+          label="Comparar"
+          style={styleButton}
+          primary
+          raised
+        >
+          compare
+        </Button>
+      </Link>
     </Cell>
   </Grid>
 );

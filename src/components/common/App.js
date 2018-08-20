@@ -6,6 +6,7 @@ import NavItemLink from './NavItemLink';
 import { navItems } from '../../utils/MenuItems';
 import CarList from '../cars/CarList';
 import CompareComponent from '../compare/Compare';
+import CarDetails from '../cars/CarDetails';
 
 const styles = {
   content: { minHeight: 'auto' },
@@ -25,6 +26,7 @@ const AppPage = ({ toolbarTitle, location }) => (
     <Switch key={location.pathname}>
       <Route path={navItems[0].to} exact component={CarList} />
       <Route path={navItems[1].to} component={CompareComponent} />
+      <Route path="/details/:id" component={CarDetails} />
     </Switch>
   </NavigationDrawer>
 );
