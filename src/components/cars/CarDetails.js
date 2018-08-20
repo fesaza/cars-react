@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Card, CardTitle, CardText, Button, Media, Grid, Cell } from 'react-md';
+import { Link } from 'react-router-dom';
+import { Card, CardTitle, CardText, Media, Grid, Cell, Button } from 'react-md';
 import { getCarById, addCarToCompare } from '../../actions/CarsActions';
 
 class CarDetails extends Component {
@@ -9,7 +10,7 @@ class CarDetails extends Component {
     car: PropTypes.object.isRequired,
     getCar: PropTypes.func.isRequired,
     match: PropTypes.any.isRequired,
-    addCar: PropTypes.func.isRequired,
+    // addCar: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
@@ -22,7 +23,7 @@ class CarDetails extends Component {
   }
 
   render() {
-    const { car, addCar } = this.props;
+    const { car } = this.props;
     return (
       <Card>
         <Grid>
@@ -31,16 +32,16 @@ class CarDetails extends Component {
               <img src={car.picture} alt="Foto del carro" />
             </Media>
             <CardTitle title={car.brand} subtitle={car.model} >
-              {/* <Button
-                className="md-cell--right"
-                icon
-                secondary
-                tooltipLabel="Seleccionar para comparar"
-                onClick={() => {
-                  addCar(car.id);
-                }}
-              >compare
-              </Button> */}
+              <Link className="md-cell--right" href="/" to="/">
+                <Button
+                  tooltipLabel="Volver al listado"
+                  className="md-cell--right"
+                  icon
+                  secondary
+                >
+                    arrow_back
+                </Button>
+              </Link>
             </CardTitle>
           </Cell>
           <Cell size={8}>

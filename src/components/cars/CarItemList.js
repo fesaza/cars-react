@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Card, CardText, Grid, Cell, CardActions, Button } from 'react-md';
+import { Card, CardText, Grid, Cell, CardActions, Button, Snackbar } from 'react-md';
 
-const CarItemList = ({ car, addToCompare }) => (
+const CarItemList = ({ car, addToCompare, showAddMsg, toasts, onDimissMsg }) => (
   <Card className="md-block-centered card" style={{ margin: '4px 4px 12px 4px' }}>
     {/* <CardTitle title={car.brand} subtitle={car.model} /> */}
     <CardText>
@@ -40,12 +40,18 @@ const CarItemList = ({ car, addToCompare }) => (
                 style={{ marginLeft: '2px' }}
                 onClick={() => {
                   addToCompare(car.id);
+                  showAddMsg();
                 }}
               >
                 compare
               </Button>
             </CardActions>
-
+            <Snackbar
+              id="example-snackbar"
+              toasts={toasts}
+              autohide
+              onDismiss={onDimissMsg}
+            />
           </div>
         </Cell>
       </Grid>
@@ -56,6 +62,8 @@ const CarItemList = ({ car, addToCompare }) => (
 CarItemList.propTypes = {
   car: PropTypes.object.isRequired,
   addToCompare: PropTypes.func.isRequired,
+  showAddMsg: PropTypes.func.isRequired,
+  toast: PropTypes.any,
 };
 
 export default CarItemList;
