@@ -1,5 +1,14 @@
 import _ from 'lodash';
+import fp from 'lodash/fp';
 import * as carsActions from '../actions/CarsActions';
+
+/**
+ * This function helps to debug lodash compose function
+ */
+const debugFunction = items => {
+  console.log(items);
+  return items;
+}
 
 const cars = (state = {
   isLoading: false,
@@ -36,12 +45,16 @@ const cars = (state = {
         selectedCar: { ...action.car },
       };
     case carsActions.ADD_CAR_TO_COMPARE:
+      const concat2 = fp.concat.convert({ rearg: true });
       return {
         ...state,
-        carsToCompare: _.take(_.uniqBy([
-          _.head(_.filter(state.unfilteredCars, { id: action.id })),
-          ...state.carsToCompare,
-        ], 'id'), 3),
+        carsToCompare: fp.compose(
+          //debugFunction,
+          fp.take(3),
+          fp.uniqBy('id'),
+          concat2([...state.carsToCompare]),
+          fp.filter({ id: action.id }),
+        )(state.unfilteredCars)
       };
     case carsActions.REMOVE_CAR_TO_COMPARE:
       return {
