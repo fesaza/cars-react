@@ -49,7 +49,6 @@ const cars = (state = {
       return {
         ...state,
         carsToCompare: fp.compose(
-          //debugFunction,
           fp.take(3),
           fp.uniqBy('id'),
           concat2([...state.carsToCompare]),
